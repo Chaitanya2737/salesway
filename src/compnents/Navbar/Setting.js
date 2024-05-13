@@ -4,23 +4,14 @@ import { IoPersonCircleOutline } from 'react-icons/io5';
 import Typography from '@mui/material/Typography';
 import './Navbar.css';
 
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Setting = () => {
-  const history = useHistory()
-  const [route, setroute] = useState("")
-  const navigateTo = (route) => {
-    history.push(route)
-    setroute(route)
-  }
-  useEffect(() => {
-    navigateTo(route)
-  })
 
   return (
     <nav className='Navbar'>
       <ul>
-        <li onClick={() => navigateTo("/setting")} className={history.location.pathname === '/setting' ? 'active' : ''}>
+        <li>
           <span >
             <CiSettings style={{ width: '22px', height: '22px' }} />
           </span>
@@ -28,7 +19,7 @@ const Setting = () => {
             Settings
           </Typography>
         </li>
-        <li onClick={() => navigateTo("/team")} className={history.location.pathname === '/team' ? 'active' : ''}>
+        <li>
           <span>
 
           <IoPersonCircleOutline style={{ width: '20px', height: '20px' }} />

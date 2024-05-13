@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import { PiChartDonutFill, PiSquaresFourFill } from 'react-icons/pi';
-import { CiSettings } from 'react-icons/ci';
 import { IoStatsChartSharp } from 'react-icons/io5';
 import { FaPlug } from 'react-icons/fa';
 import { IoIosList } from 'react-icons/io';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 const Menu = () => {
-    let history = useHistory();
+    const location = useLocation();
+    const history = useNavigate();
 
-    const [routes, setroutes] = useState("")
+    const [routes, setRoutes] = useState("");
+
     useEffect(() => {
         // Navigate to the default route when the component mounts
         navigateTo(routes);
     },[]); // Add an empty dependency array to ensure useEffect runs only once
+
     const navigateTo = (route) => {
-        history.push(route);
-        setroutes(route);
+        history(route);
+        setRoutes(route);
     };
 
     return (
@@ -31,7 +33,7 @@ const Menu = () => {
                 <ul>
                     <li
                         onClick={() => navigateTo('/dashboard')}
-                        className={history.location.pathname === '/dashboard' ? 'active' : ''}
+                        className={location.pathname === '/dashboard' ? 'active' : ''}
                     >
                         <span>
                             <PiSquaresFourFill style={{ width: '22px', height: '22px', }}  />
@@ -51,7 +53,7 @@ const Menu = () => {
                         </Typography>
                     </li>
                     <li onClick={() => navigateTo('/campaigns')}
-                    className={history.location.pathname === '/campaigns' ? 'active' : ''}>
+                    className={location.pathname === '/campaigns' ? 'active' : ''}>
                         <span>
 
                         <IoStatsChartSharp style={{ width: '20px', height: '20px' }} />
@@ -67,7 +69,7 @@ const Menu = () => {
                     </li>
                     <li onClick={() => navigateTo('/flow')}
                     
-                    className={history.location.pathname === '/flow' ? 'active' : ''}>
+                    className={location.pathname === '/flow' ? 'active' : ''}>
                         <span>
 
                         <PiChartDonutFill style={{ width: '20px', height: '20px' }} />
@@ -83,7 +85,7 @@ const Menu = () => {
                     </li>
                     <li onClick={() => navigateTo('/integration')}
                     
-                    className={history.location.pathname === '/integration' ? 'active' : ''}>
+                    className={location.pathname === '/integration' ? 'active' : ''}>
                         <span>
 
                         <FaPlug style={{ width: '20px', height: '20px' }} />
@@ -99,7 +101,7 @@ const Menu = () => {
                     </li>
                     <li onClick={() => navigateTo('/customers')}
                     
-                    className={history.location.pathname === '/customers' ? 'active' : ''}>
+                    className={location.pathname === '/customers' ? 'active' : ''}>
                         <span>
 
                         <IoIosList style={{ width: '20px', height: '20px' }} />
